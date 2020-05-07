@@ -36,8 +36,8 @@ class Producto(models.Model):
     foto = models.CharField(max_length = 100)
     descripcion = models.TextField(max_length = 200, default = "")
     numero_compras = models.IntegerField(default = 0, blank = True)
-    precio = models.DecimalField(decimal_places = 4, max_digits = 7)
-    reseñas = models.ManyToManyField(Reseña, blank = True)
+    precio = models.DecimalField(decimal_places = 2, max_digits = 5)
+    reseñas = models.ManyToManyField(Reseña, related_name = "reseña", blank = True)
 
     def __str__(self):
         return "(" + str(self.id) + ") " + str(self.negocio)
