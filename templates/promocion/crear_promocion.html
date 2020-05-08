@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} Promocion {% endblock %}
+{% block content %}
+  <h1 class="display-3 ml-4 my-5">{{ title }} Promocion</h1>
+  <button type="button" onclick="location.href='{% url 'listar_promociones' %}'" class="btn btn-success float-right mx-5 my-4 py-1">Promociones</button>
+  <div class="mx-5 my-3">
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% for campo in form.visible_fields %}
+        <div class="input-group input-group-sm mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">{{ campo.label_tag }}</span>
+          </div>
+          {{ campo }}
+        </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">{{ title }}</button>
+    </form>
+  </div>
+{% endblock %}

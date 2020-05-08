@@ -17,6 +17,6 @@ def administrar_tabla(request, model_name):
     elif model_name == 'Producto':
         return redirect('listarProductos')
     elif model_name == 'Promocion':
-        return redirect('listarProductos')
+        return redirect('listar_promociones')
     elif model_name == 'Pedido':
         return redirect('listarProductos')
