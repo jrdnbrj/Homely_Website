@@ -26,4 +26,5 @@ urlpatterns = [
     path('logout', cerrar_sesion, name = 'cerrar_sesión'),
     path('registrarUsuario', registrar_usuario, name = 'registrar_usuario'),
     path('administrar', administrar, name = 'administrar'),
+    path('administrar/<str:model_name>/', administrar_tabla, name = 'administrar_tabla'),
 ]

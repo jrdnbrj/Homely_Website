@@ -1,17 +1,54 @@
-from apps.Homely.models import Negocio, Producto
+from apps.Homely.models import Negocio
 from apps.Homely.forms import NegocioForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 
 @login_required(login_url = '/')
-def listarNegocios(request):
+def verNegocios(request):
     negocios = Negocio.objects.all()
     contexto = {'negocios': negocios}
-    return render(request, 'negocio/listarNegocios.html', contexto)
+    return render(request, 'negocio/verNegocios.html', contexto)
 
 def verNegocio(request, id):
     negocio = Negocio.objects.get(id = id)
-    productos = Producto.objects.filter(negocio_id = id)
-    contexto = {'negocio': negocio, 'productos': productos}
+    negocios = Negocio.objects.filter(negocio_id = id)
+    contexto = {'negocio': negocio, 'negocios': negocios}
     return render(request, 'negocio/verNegocio.html', contexto)
+
+@login_required(login_url = '/')
+def listar_negocios(request):
+    negocios = Negocio.objects.all()
+    contexto = {'negocios': negocios}
+    return render(request, 'negocio/listar_negocios.html', contexto)
+
+@login_required(login_url = '/')
+def crear_negocio(request):
+    if request.method == 'POST':
+        form = NegocioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_negocios')
+    else:
+        form = NegocioForm()
+    return render(request, 'negocio/crear_negocio.html', {'form': form, 'title': 'Crear'})
+
+
+@login_required(login_url = '/')
+def editar_negocio(request, id):
+    negocio = Negocio.objects.get(id = id)
+    if request.method == 'GET':
+        form = NegocioForm(instance = negocio)
+    else:
+        form = NegocioForm(request.POST, instance = negocio)
+        if form.is_valid():
+            form.save()
+        return redirect('listar_negocios')
+    return render(request, 'negocio/crear_negocio.html', {'form': form, 'title': 'Editar'})
+
+@login_required(login_url = '/')
+def eliminar_negocio(request, id):
+    if request.method == 'POST':
+        Negocio.objects.get(id = id).delete()
+        return redirect('listar_negocios')
+    return render(request, 'negocio/eliminar_negocio.html', {})
