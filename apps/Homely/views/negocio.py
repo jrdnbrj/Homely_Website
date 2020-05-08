@@ -1,4 +1,4 @@
-from apps.Homely.models import Negocio
+from apps.Homely.models import Negocio, Producto
 from apps.Homely.forms import NegocioForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -12,8 +12,8 @@ def verNegocios(request):
 
 def verNegocio(request, id):
     negocio = Negocio.objects.get(id = id)
-    negocios = Negocio.objects.filter(negocio_id = id)
-    contexto = {'negocio': negocio, 'negocios': negocios}
+    productos = Producto.objects.filter(negocio_id = id)
+    contexto = {'negocio': negocio, 'productos': productos}
     return render(request, 'negocio/verNegocio.html', contexto)
 
 @login_required(login_url = '/')

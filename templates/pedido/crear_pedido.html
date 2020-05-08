@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block title %} {{ title }} Reseña {% endblock %}
+{% block title %} {{ title }} Pedido {% endblock %}
 {% block content %}
   <div class="row mt-5 pl-3">
-    <h1 class="display-3 ml-4 mt-3">{{ title }} Reseña</h1>
-    <button type="button" onclick="location.href='{% url 'listar_reseñas' %}'" class="btn btn-success float-right m-5">Reseñas</button>
+    <h1 class="display-3 ml-4 mt-3">{{ title }} Pedido</h1>
+    <button type="button" onclick="location.href='{% url 'listar_pedidos' %}'" class="btn btn-success float-right m-5">Pedidos</button>
   </div>
   <div class="mx-5 my-3">
     <form method="POST">

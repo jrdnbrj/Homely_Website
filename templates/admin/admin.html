@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% block title %} Administrar {% endblock %}
 {% block content %}
+    <div class="row mt-5 pl-3">
+        <h1 class="display-3 ml-4 mt-3">Adminitrar Modelo</h1>
+    </div>
     <div clas="container">
-        <div class="list-group mx-5 py-5 my-5 col-2 float-auto">
+        <div class="list-group col-auto mt-4">
             {% for model_name in models %}
-                <a href="{% url 'administrar_tabla' model_name %}" class="list-group-item list-group-item-action">{{ model_name }}s</a>
+                <a href="{% url 'administrar_tabla' model_name %}" class="list-group-item list-group-item-action mx-auto w-25 text-center text-info h4">{{ model_name }}s</a>
             {% endfor %}
         </div>
     </div>

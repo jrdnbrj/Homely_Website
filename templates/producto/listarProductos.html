@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% block title %} Productos {% endblock %}
 {% block content %}
-    <!--<div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4 float-left mx-5">Productos</h1>
-    </div>-->
-    <h1 class="display-3 ml-4 my-5">Productos</h1>
-    <button type="button" onclick="location.href='{% url 'crearProducto' %}'" class="btn btn-success float-right mx-5 my-4 py-1">Nuevo producto</button>
+    <div class="row mt-5 pl-3">
+        <h1 class="display-3 ml-4 mt-3">Productos</h1>
+        <button type="button" onclick="location.href='{% url 'crearProducto' %}'" class="btn btn-success float-right m-5">Nuevo producto</button>
+    </div>
     <div class="table-responsive container">
         <table class="table table-striped text-center table-bordered mx-auto w-auto">
             <thead class="thead-dark">

@@ -3,7 +3,7 @@ from apps.Homely.forms import *
 from django.shortcuts import render, redirect
 
 def administrar(request):
-    models = [Usuario.__name__, Negocio.__name__, Reseña.__name__, Producto.__name__, Promocion.__name__, Pedido.__name__]
+    models = [Negocio.__name__, Reseña.__name__, Producto.__name__, Promocion.__name__, Pedido.__name__]
     contexto = {'models': models}
     return render(request, 'admin/admin.html', contexto)
 
@@ -19,4 +19,4 @@ def administrar_tabla(request, model_name):
     elif model_name == 'Promocion':
         return redirect('listar_promociones')
     elif model_name == 'Pedido':
-        return redirect('listarProductos')
+        return redirect('listar_pedidos')

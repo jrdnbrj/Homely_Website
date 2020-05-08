@@ -1,39 +1,43 @@
 {% extends 'base.html' %}
-{% block title %} Promociones {% endblock %}
+{% block title %} Pedidos {% endblock %}
 {% block content %}
     <div class="row mt-5 pl-3">
-        <h1 class="display-3 ml-4 mt-3">Promociones</h1>
-        <button type="button" onclick="location.href='{% url 'crear_promocion' %}'" class="btn btn-success float-right m-5">Nueva promocion</button>
+        <h1 class="display-3 ml-4 mt-3">Pedidos</h1>
+        <button type="button" onclick="location.href='{% url 'crear_pedido' %}'" class="btn btn-success float-right m-5">Nuevo pedido</button>
     </div>
     <div class="table-responsive container">
         <table class="table table-striped text-center table-bordered mx-auto w-auto">
             <thead class="thead-dark">
                 <tr>
-                    <th>Nombre</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                    <th>Valor</th>
                     <th>Productos</th>
-                    <th>Foto</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
+                    <th>Promocion</th>
+                    <th>Dirección</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                {% for promocion in promociones %}
+                {% for pedido in pedidos %}
                     <tr>
-                        <td>{{ promocion.nombre }}</td>
+                        <td>{{ pedido.usuario }}</td>
+                        <td>{{ pedido.fecha }}</td>
+                        <td>{{ pedido.valor }}</td>
                         <td>
-                            {% for producto in promocion.productos.all %}
-                                {{ producto }}<br>
+                            {% for producto in pedido.productos.all %}
+                                {{ producto }} <br>
                             {% endfor %}
                         </td>
-                        <td>{{ promocion.foto }}</td>
-                        <td>{{ promocion.descripcion }}</td>
-                        <td>{{ promocion.precio }}</td>
+                        <td>{{ pedido.promocion }}</td>
+                        <td>{{ pedido.direccion }}</td>
+                        <td>{{ pedido.estado }}</td>
                         <td class="dropdown">
-                            <button type="button" class="btn btn-info btn-sm btn-block" onclick="location.href='{% url 'editar_promocion' promocion.id %}'">Editar</button>
+                            <button type="button" class="btn btn-info btn-sm btn-block" onclick="location.href='{% url 'editar_pedido' pedido.id %}'">Editar</button>
                             <a href="" class="btn btn-danger btn-sm btn-block" data-toggle="dropdown">Eliminar</a>
                             <div class="dropdown-menu">
-                                <form class="form container-fluid" method="POST" action="{% url 'eliminar_promocion' promocion.id %}">
+                                <form class="form container-fluid" method="POST" action="{% url 'eliminar_pedido' pedido.id %}">
                                     {% csrf_token %}
                                     <h5 class="">¿Estás seguro de eliminar?</h5>
                                     <button type="submit" class="btn btn-sm btn-danger btn-block">Eliminar</button>

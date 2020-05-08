@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block title %} {{ negocio.nombre }} {% endblock %}
 {% block content %}
-    <!--<div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4 float-left mx-5">{{ negocio.nombre }}</h1>
-    </div>-->
-    <h1 class="display-3 ml-4 my-5">{{ negocio.nombre }}</h1>
+    <div class="row mt-5 pl-3">
+        <h1 class="display-3 ml-4 mt-3">{{ negocio.nombre }}</h1>
+    </div>
     <div class="container">
         <div class="row">
             {% for producto in productos %}

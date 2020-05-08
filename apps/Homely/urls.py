@@ -4,6 +4,7 @@ from .views.negocio import *
 from .views.producto import *
 from .views.reseña import *
 from .views.promocion import *
+from .views.pedido import *
 from .views.landing_page import landing_page
 
 urlpatterns = [
@@ -31,4 +32,9 @@ urlpatterns = [
     path('promocion/crear/', crear_promocion, name = "crear_promocion"),
     path('promocion/editar/<int:id>/', editar_promocion, name = "editar_promocion"),
     path('promocion/eliminar/<int:id>/', eliminar_promocion, name = "eliminar_promocion"),
+
+    path('pedido/', listar_pedidos, name = "listar_pedidos"),
+    path('pedido/crear/', crear_pedido, name = "crear_pedido"),
+    path('pedido/editar/<int:id>/', editar_pedido, name = "editar_pedido"),
+    path('pedido/eliminar/<int:id>/', eliminar_pedido, name = "eliminar_pedido"),
 ]

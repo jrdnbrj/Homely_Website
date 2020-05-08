@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% block title %} {{ title }} Producto {% endblock %}
 {% block content %}
-  <!--<div class="jumbotron jumbotron-fluid">
-    <h1 class="display-4 float-left mx-5">{{ title }} Producto</h1>
-  </div>-->
-  <h1 class="display-3 ml-4 my-5">{{ title }} Producto</h1>
-  <button type="button" onclick="location.href='{% url 'listarProductos' %}'" class="btn btn-success float-right mx-5 my-4 py-1">Productos</button>
+  <div class="row mt-5 pl-3">
+    <h1 class="display-3 ml-4 mt-3">{{ title }} Producto</h1>
+    <button type="button" onclick="location.href='{% url 'listarProductos' %}'" class="btn btn-success float-right m-5">Productos</button>
+  </div>
   <div class="mx-5 my-3">
     <form method="POST">
       {% csrf_token %}
@@ -22,55 +21,3 @@
     </form>
   </div>
 {% endblock %}
-
-      <!--<div class="input-group mb-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Nombre</span>
-        </div>
-        <input type="text" class="form-control col-3" name="nombre" value="{{ log }}" placeholder="Ingresar Nombre del producto">
-      </div>
-      <div class="input-group mb-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Imagen</span>
-        </div>
-        <input type="text" class="form-control col-3" name="imagen" placeholder="Ingresar Nombre del producto">
-      </div>
-      <div class="input-group mb-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Descripción</span>
-        </div>
-        <input type="text" class="form-control col-3" name="descripción" placeholder="Ingresar Nombre del producto">
-      </div>
-      <div class="input-group mb-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Precio</span>
-        </div>
-        <input type="text" class="form-control col-3" name="precio" placeholder="Ingresar Nombre del producto">
-      </div>
-      <div class="input-group mb-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text"># de Compras</span>
-        </div>
-        <input type="text" class="form-control col-3" name="numero_compras" placeholder="Ingresar Nombre del producto">
-      </div>
-      <div class="input-group mb-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Calificación</span>
-        </div>
-        <input type="text" class="form-control col-3" name="calificación" placeholder="Ingresar Nombre del producto">
-      </div>
-      <div class="input-group mb-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Comentario</span>
-        </div>
-        <input type="text" class="form-control col-3" name="comentario" placeholder="Ingresar Nombre del producto">
-      </div>
-      <div class="input-group mb-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Pedido</span>
-        </div>
-        <input type="text" class="form-control col-3" name="pedido" placeholder="Ingresar Nombre del producto">
-      </div>
-      <button type="submit" class="btn btn-success">Submit</button>
-    </form>
-  </div>-->
