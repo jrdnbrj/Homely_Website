@@ -1,14 +1,18 @@
-from apps.Homely.models import Producto
+from apps.Homely.models import Producto, Reseña
 from apps.Homely.forms import ProductoForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-
 
 @login_required(login_url = '/')
 def listarProductos(request):
     productos = Producto.objects.all()
     contexto = {'productos': productos}
     return render(request, 'producto/listarProductos.html', contexto)
+
+def verProducto(request, id):
+    producto = Producto.objects.get(id = id)
+    contexto = {'producto': producto}
+    return render(request, 'producto/verProducto.html', contexto)
 
 @login_required(login_url = '/')
 def crearProducto(request):
@@ -40,3 +44,8 @@ def eliminarProducto(request, id):
         Producto.objects.get(id = id).delete()
         return redirect('listarProductos')
     return render(request, 'Producto/eliminarProducto.html', {})
+
+def verReseñas(request, id):
+    producto = Producto.objects.get(id = id)
+    contexto = {'producto': producto}
+    return render(request, 'producto/verReseñas.html', contexto)

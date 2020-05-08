@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %} Administrar {% endblock %}
+{% block content %}
+    <div clas="container">
+        <div class="list-group mx-5 py-5 my-5 col-2 float-auto">
+            {% for model in models %}
+                <a href="#" class="list-group-item list-group-item-action">{{ model }}</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

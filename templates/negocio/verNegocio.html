@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %} {{ negocio.nombre }} {% endblock %}
+{% block content %}
+    <!--<div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4 float-left mx-5">{{ negocio.nombre }}</h1>
+    </div>-->
+    <h1 class="display-3 ml-4 my-5">{{ negocio.nombre }}</h1>
+    <div class="container">
+        <div class="row">
+            {% for producto in productos %}
+                <div class="d-block card col-sm-3 mx-2 my-2">
+                    <span>{{ producto.precio }}<span>
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ producto.nombre }}</h5>
+                        <p class="card-text">{{ producto.descripcion }}</p>
+                        <a href="{% url 'verReseñas' producto.id %}" class="btn btn-primary">Reseña</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

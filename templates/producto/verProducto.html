@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %} {{ producto.nombre }} {% endblock %}
+{% block content %}
+    <!--<div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4 float-left mx-5">{{ producto.nombre }}</h1>
+    </div>-->
+    <h1 class="display-3 ml-4 my-5">{{ producto.nombre }}</h1>
+    <div class="table-responsive container">
+        <table class="table table-striped text-center table-bordered mx-auto w-auto">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Negocio</th>
+                    <th>Nombre</th>
+                    <th>Foto</th>
+                    <th>Descripción</th>
+                    <th>#Compras</th>
+                    <th>Precio</th>
+                    <th><a href="{% url 'verReseñas' producto.id %}">Reseñas</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ producto.negocio }}</td>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.foto }}</td>
+                    <td>{{ producto.descripcion }}</td>
+                    <td>{{ producto.numero_compras }}</td>
+                    <td>{{ producto.precio }}</td>
+                    <td>
+                    {% for reseña in producto.reseñas.all %}
+                        {{ reseña }}
+                    {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
