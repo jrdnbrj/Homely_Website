@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %} Reseñas {% endblock %}
+{% block content %}
+    <h1 class="display-3 ml-4 my-5">Reseñas</h1>
+    <button type="button" onclick="location.href='{% url 'crear_reseña' %}'" class="btn btn-success float-right mx-5 my-4 py-1">Nueva Reseña</button>
+    <div class="table-responsive container">
+        <table class="table table-striped text-center table-bordered mx-auto w-auto">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                    <th>Texto</th>
+                    <th>Calificación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reseña in reseñas %}
+                    <tr>
+                        <td>{{ reseña.usuario }}</td>
+                        <td>{{ reseña.fecha }}</td>
+                        <td>{{ reseña.texto }}</td>
+                        <td>{{ reseña.calificacion }}</td>
+                        <td class="dropdown">
+                            <button type="button" class="btn btn-info btn-sm btn-block" onclick="location.href='{% url 'editar_reseña' reseña.id %}'">Editar</button>
+                            <a href="" class="btn btn-danger btn-sm btn-block" data-toggle="dropdown">Eliminar</a>
+                            <div class="dropdown-menu">
+                                <form class="form container-fluid" method="POST" action="{% url 'eliminar_reseña' reseña.id %}">
+                                    {% csrf_token %}
+                                    <h5 class="">¿Estás seguro de eliminar?</h5>
+                                    <button type="submit" class="btn btn-sm btn-danger btn-block">Eliminar</button>
+                                    <button type="" class="btn btn-sm btn-success btn-block" data-toggle="dropdown">Cancelar</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

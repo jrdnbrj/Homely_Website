@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf.urls import url
 from .views.negocio import *
 from .views.producto import *
-#from .views.reseña import *
+from .views.reseña import *
 from .views.landing_page import landing_page
 
 urlpatterns = [
@@ -20,4 +20,9 @@ urlpatterns = [
     path('negocio/crear/', crear_negocio, name = "crear_negocio"),
     path('negocio/editar/<int:id>/', editar_negocio, name = "editar_negocio"),
     path('negocio/eliminar/<int:id>/', eliminar_negocio, name = "eliminar_negocio"),
+
+    path('reseña/', listar_reseñas, name = "listar_reseñas"),
+    path('reseña/crear/', crear_reseña, name = "crear_reseña"),
+    path('reseña/editar/<int:id>/', editar_reseña, name = "editar_reseña"),
+    path('reseña/eliminar/<int:id>/', eliminar_reseña, name = "eliminar_reseña"),
 ]
