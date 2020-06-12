@@ -2,7 +2,7 @@ from django.db import models
 
 class Usuario(models.Model):
     id = models.AutoField(primary_key = True)
-    username = models.CharField(max_length = 50)
+    username = models.CharField(max_length = 50, unique=True)
     mail = models.CharField(max_length = 100)
     password = models.CharField(max_length = 100)
 
@@ -12,8 +12,8 @@ class Usuario(models.Model):
 class Negocio(models.Model):
     id = models.AutoField(primary_key = True)
     nombre = models.CharField(max_length = 100)
-    logo = models.CharField(max_length = 100)
-    ubicacion = models.CharField(max_length = 100)
+    logo = models.ImageField(upload_to='' ,max_length = None)
+    ubicacion = models.CharField(max_length = 200)
 
     def __str__(self):
         return "(" + str(self.id) + ") " + self.nombre
@@ -32,8 +32,8 @@ class Producto(models.Model):
     id = models.AutoField(primary_key = True)
     negocio = models.ForeignKey(Negocio, on_delete=models.CASCADE)
     nombre = models.CharField(max_length = 100)
-    foto = models.CharField(max_length = 100)
-    descripcion = models.TextField(max_length = 200, default = "")
+    foto = models.ImageField(upload_to='' ,max_length = 100, null=True)
+    descripcion = models.TextField(max_length = 200, blank=True)
     numero_compras = models.IntegerField(default = 0, blank = True)
     precio = models.DecimalField(decimal_places = 2, max_digits = 5)
     reseñas = models.ManyToManyField(Reseña, related_name = "reseña", blank = True)
@@ -45,7 +45,7 @@ class Promocion(models.Model):
     id = models.AutoField(primary_key = True)
     nombre = models.CharField(max_length = 100)
     productos = models.ManyToManyField(Producto)
-    foto = models.CharField(max_length = 100, null = True)
+    foto = models.ImageField(upload_to='' ,max_length = None, null = True)
     descripcion = models.CharField(max_length = 100, null = True)
     precio = models.DecimalField(decimal_places = 4, max_digits = 7)
 
@@ -55,7 +55,7 @@ class Promocion(models.Model):
 class Pedido(models.Model):
     id = models.AutoField(primary_key = True)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, default = "")
-    fecha = models.DateTimeField()
+    fecha = models.DateTimeField(auto_now_add=True)
     valor = models.DecimalField(decimal_places = 4, max_digits = 7)
     productos = models.ManyToManyField(Producto)
     promocion = models.ForeignKey(Promocion, on_delete=models.CASCADE, null = True)

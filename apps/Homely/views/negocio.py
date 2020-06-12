@@ -25,10 +25,15 @@ def listar_negocios(request):
 @login_required(login_url = '/')
 def crear_negocio(request):
     if request.method == 'POST':
-        form = NegocioForm(request.POST)
+        print(request.POST)
+        print(request.FILES)
+        form = NegocioForm(request.POST, request.FILES)
+        print(form)
         if form.is_valid():
             form.save()
             return redirect('listar_negocios')
+        else:
+            print(form.errors)
     else:
         form = NegocioForm()
     return render(request, 'negocio/crear_negocio.html', {'form': form, 'title': 'Crear'})
@@ -40,9 +45,11 @@ def editar_negocio(request, id):
     if request.method == 'GET':
         form = NegocioForm(instance = negocio)
     else:
-        form = NegocioForm(request.POST, instance = negocio)
+        form = NegocioForm(request.POST, request.FILES, instance = negocio)
         if form.is_valid():
             form.save()
+        else:
+            print(form.errors)
         return redirect('listar_negocios')
     return render(request, 'negocio/crear_negocio.html', {'form': form, 'title': 'Editar'})
 

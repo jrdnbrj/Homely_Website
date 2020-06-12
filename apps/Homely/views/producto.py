@@ -17,10 +17,12 @@ def verProducto(request, id):
 @login_required(login_url = '/')
 def crearProducto(request):
     if request.method == 'POST':
-        form = ProductoForm(request.POST)
+        form = ProductoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('listarProductos')
+        else:
+            print(form.errors)
     else:
         form = ProductoForm()
     return render(request, 'Producto/crearProducto.html', {'form': form, 'title': 'Crear'})
@@ -32,9 +34,11 @@ def editarProducto(request, id):
     if request.method == 'GET':
         form = ProductoForm(instance = producto)
     else:
-        form = ProductoForm(request.POST, instance = producto)
+        form = ProductoForm(request.POST, request.FILES, instance = producto)
         if form.is_valid():
             form.save()
+        else:
+            print(form.errors)
         return redirect('listarProductos')
     return render(request, 'Producto/crearProducto.html', {'form': form, 'title': 'Editar'})
 

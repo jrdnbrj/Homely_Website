@@ -22,18 +22,22 @@
             <tbody>
                 {% for producto in productos %}
                     <tr>
-                        <td>{{ producto.negocio }}</td>
-                        <td>{{ producto.nombre }}</td>
-                        <td>{{ producto.foto }}</td>
-                        <td>{{ producto.descripcion }}</td>
-                        <td>{{ producto.numero_compras }}</td>
-                        <td>{{ producto.precio }}</td>
-                        <td>
+                        <td class="align-middle">{{ producto.negocio }}</td>
+                        <td class="align-middle">{{ producto.nombre }}</td>
+                        <td class="align-middle">
+                            <figure class="figure">
+                                <img src="{{ producto.foto.url }}" class="img-fluid figure-img" style="max-width:300px;width: expression(this.width > 300 ? 300: true);">
+                            </figure>
+                        </td>
+                        <td class="align-middle">{{ producto.descripcion }}</td>
+                        <td class="align-middle">{{ producto.numero_compras }}</td>
+                        <td class="align-middle">{{ producto.precio }}</td>
+                        <td class="align-middle">
                         {% for reseña in producto.reseñas.all %}
                             {{ reseña }} <br>
                         {% endfor %}
                         </td>
-                        <td class="dropdown">
+                        <td class="dropdown align-middle">
                             <button type="button" class="btn btn-info btn-sm btn-block" onclick="location.href='{% url 'editarProducto' producto.id %}'">Editar</button>
                             <a href="" class="btn btn-danger btn-sm btn-block" data-toggle="dropdown">Eliminar</a>
                             <div class="dropdown-menu">

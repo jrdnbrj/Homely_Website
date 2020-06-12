@@ -29,7 +29,7 @@
         <a class="nav-link" href="">Promociones</a>
       </li>
       <li class="nav-item px-3">
-        <a class="nav-link" href="">Registro Ventas</a>
+        <a class="nav-link" href="{% url 'reportes' %}">Registro Ventas</a>
       </li>
       <li class="nav-item px-3">
         {% if user.is_authenticated %}
