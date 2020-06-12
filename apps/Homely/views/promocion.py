@@ -12,10 +12,12 @@ def listar_promociones(request):
 @login_required(login_url = '/')
 def crear_promocion(request):
     if request.method == 'POST':
-        form = PromocionForm(request.POST)
+        form = PromocionForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('listar_promociones')
+        else:
+            print(form.errors)
     else:
         form = PromocionForm()
     return render(request, 'promocion/crear_promocion.html', {'form': form, 'title': 'Crear'})
@@ -27,9 +29,11 @@ def editar_promocion(request, id):
     if request.method == 'GET':
         form = PromocionForm(instance = promocion)
     else:
-        form = PromocionForm(request.POST, instance = promocion)
+        form = PromocionForm(request.POST, request.FILES, instance = promocion)
         if form.is_valid():
             form.save()
+        else:
+            print(form.errors)
         return redirect('listar_promociones')
     return render(request, 'promocion/crear_promocion.html', {'form': form, 'title': 'Editar'})
 

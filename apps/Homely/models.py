@@ -22,7 +22,7 @@ class Reseña(models.Model):
     id = models.AutoField(primary_key = True)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     fecha = models.DateTimeField()
-    texto = models.TextField(max_length = 200, default = "")
+    texto = models.TextField(max_length = 1000, default = "")
     calificacion = models.IntegerField()
 
     def __str__(self):
@@ -33,7 +33,7 @@ class Producto(models.Model):
     negocio = models.ForeignKey(Negocio, on_delete=models.CASCADE)
     nombre = models.CharField(max_length = 100)
     foto = models.ImageField(upload_to='' ,max_length = 100, null=True)
-    descripcion = models.TextField(max_length = 200, blank=True)
+    descripcion = models.TextField(max_length = 500, blank=True)
     numero_compras = models.IntegerField(default = 0, blank = True)
     precio = models.DecimalField(decimal_places = 2, max_digits = 5)
     reseñas = models.ManyToManyField(Reseña, related_name = "reseña", blank = True)
@@ -46,7 +46,7 @@ class Promocion(models.Model):
     nombre = models.CharField(max_length = 100)
     productos = models.ManyToManyField(Producto)
     foto = models.ImageField(upload_to='' ,max_length = None, null = True)
-    descripcion = models.CharField(max_length = 100, null = True)
+    descripcion = models.TextField(max_length = 500, blank=True, default='')
     precio = models.DecimalField(decimal_places = 4, max_digits = 7)
 
     def __str__(self):

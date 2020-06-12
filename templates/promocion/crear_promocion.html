@@ -6,7 +6,7 @@
     <button type="button" onclick="location.href='{% url 'listar_promociones' %}'" class="btn btn-success float-right m-5">Promociones</button>
   </div>
   <div class="mx-5 my-3">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.non_field_errors }}
       {% for campo in form.visible_fields %}

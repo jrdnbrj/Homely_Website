@@ -20,16 +20,20 @@
             <tbody>
                 {% for promocion in promociones %}
                     <tr>
-                        <td>{{ promocion.nombre }}</td>
-                        <td>
+                        <td class="align-middle">{{ promocion.nombre }}</td>
+                        <td class="align-middle">
                             {% for producto in promocion.productos.all %}
                                 {{ producto }}<br>
                             {% endfor %}
                         </td>
-                        <td>{{ promocion.foto }}</td>
-                        <td>{{ promocion.descripcion }}</td>
-                        <td>{{ promocion.precio }}</td>
-                        <td class="dropdown">
+                        <td class="align-middle">
+                            <figure class="figure">
+                                <img src="{{ promocion.foto.url }}" class="img-fluid figure-img" style="max-width:300px;width: expression(this.width > 300 ? 300: true);">
+                            </figure>
+                        </td>
+                        <td class="align-middle">{{ promocion.descripcion }}</td>
+                        <td class="align-middle">{{ promocion.precio }}</td>
+                        <td class="dropdown align-middle">
                             <button type="button" class="btn btn-info btn-sm btn-block" onclick="location.href='{% url 'editar_promocion' promocion.id %}'">Editar</button>
                             <a href="" class="btn btn-danger btn-sm btn-block" data-toggle="dropdown">Eliminar</a>
                             <div class="dropdown-menu">

@@ -16,6 +16,8 @@ def crear_reseña(request):
         if form.is_valid():
             form.save()
             return redirect('listar_reseñas')
+        else:
+            print(form.errors)
     else:
         form = ReseñaForm()
     return render(request, 'reseña/crear_reseña.html', {'form': form, 'title': 'Crear'})
@@ -30,6 +32,8 @@ def editar_reseña(request, id):
         form = ReseñaForm(request.POST, instance = reseña)
         if form.is_valid():
             form.save()
+        else:
+            print(form.errors)
         return redirect('listar_reseñas')
     return render(request, 'reseña/crear_reseña.html', {'form': form, 'title': 'Editar'})
 
