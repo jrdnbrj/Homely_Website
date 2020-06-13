@@ -8,9 +8,6 @@ from apps.Homely.forms import *
 def landing_page(request):
     return render(request, 'index.html')
 
-def reportes(request):
-    return render(request, 'reportes/reportes.html', {})
-
 def registrar_usuario(request):
     if request.method == 'POST':
         email = request.POST['mail']

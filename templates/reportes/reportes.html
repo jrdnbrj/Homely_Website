@@ -2,24 +2,85 @@
 {% block title %} {{ title }} Promocion {% endblock %}
 {% block content %}
     <div style="height: 50px;"></div>
-    <div class="container"><hr>
-        <div class="input-group mx-auto col-10">
+    <div class="container"><hr> {% csrf_token %}
+        <div class="input-group mx-auto col-8">
             <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">Opciones de Reporte</label>
+                <label class="input-group-text" for="opcion">Opciones de Reporte</label>
             </div>
-            <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Escoge una opción...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select class="custom-select" id="opcion">
+                <option selected value="0">Escoge una opción...</option>
+                <option value="1">Restaruantes con mas ventas</option>
+                <option value="2">Productos mas vendidos</option>
+                <option value="3">Productos con mas reseñas</option>
+                <option value="4">Usuarios con mas pedidos</option>
+                <option value="5">Restaurante con mejores reseña</option>
+                <!--<option value="6">Restaurante con mas fans</option>
+                <option value="7">Promocionaes mas usadas</option>
+                <option value="8">Pedidos</option>-->
             </select>
         </div>
+        <div class="row col-8 mx-auto mt-3 mb-5">
+            <div class="col">From: <input type="datetime-local" class="form-control" id="date_from"></div>
+            <div class="col">To: <input type="datetime-local" class="form-control" id="date_to"></div>
+        </div>
+        <table class="table col-5 mx-auto mt-5">
+            <!--<thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">First</th>
+                </tr>
+            </thead>-->
+            <tbody id="list">
+                
+            </tbody>
+        </table>
     </div>
 
 {% endblock %}
 
 {% block js %}
     <script>
+
+        $(document).ready(inicio);
+        $('#opcion').on('change', inicio);
+        $('#date_from').on('change', inicio);
+        $('#date_to').on('change', inicio);
+
+        function inicio(){
+            var opcion = $('#opcion').val();
+            var date_from = $('#date_from').val();
+            var date_to = $('#date_to').val();
+            console.log(opcion + ',' + date_from + ',' + date_to);
+
+            var csrfToken = $('[name="csrfmiddlewaretoken"]').val();
+
+            $.ajax({
+                data: {'csrfmiddlewaretoken': csrfToken,
+                       'opcion': opcion,
+                       'date_from': date_from,
+                       'date_to': date_to,
+                       },
+                url: "{% url 'reportes' %}",
+                type: 'post',
+                success: function(data){
+                    console.log(data.response)
+                    response = data.response
+                    $('#list').html("");
+                    for (var r in response){
+                        console.log(r + ',' + response[r])
+                        $('#list').append(
+                        `
+                        <tr class="row">
+                            <td class="text-center col">` + r + `</td>
+                            <td class="text-center col">` + response[r] + `</td>
+                        </tr>
+                        `);
+                    }
+                }
+            }).fail(function (data){
+                alert("fail");
+            })
+        }
 
     </script>
 {% endblock js %}

@@ -24,7 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.Homely.urls')),
     path('', landing_page, name = "landingPage"),
-    path('reportes/', reportes, name='reportes'),
     path('login', iniciar_sesion, name = 'iniciar_sesión'),
     path('logout', cerrar_sesion, name = 'cerrar_sesión'),
     path('registrarUsuario', registrar_usuario, name = 'registrar_usuario'),

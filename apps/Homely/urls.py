@@ -5,6 +5,7 @@ from .views.producto import *
 from .views.reseña import *
 from .views.promocion import *
 from .views.pedido import *
+from .views.reportes import *
 from .views.landing_page import landing_page
 
 urlpatterns = [
@@ -37,4 +38,6 @@ urlpatterns = [
     path('pedido/crear/', crear_pedido, name = "crear_pedido"),
     path('pedido/editar/<int:id>/', editar_pedido, name = "editar_pedido"),
     path('pedido/eliminar/<int:id>/', eliminar_pedido, name = "eliminar_pedido"),
+
+    path('reportes/', reportes, name='reportes'),
 ]
